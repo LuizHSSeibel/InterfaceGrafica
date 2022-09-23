@@ -5,6 +5,7 @@
  */
 package interfacegrafica;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,7 +42,7 @@ public class Agenda extends javax.swing.JFrame {
         TxtTelefone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(400, 400));
+        setPreferredSize(new java.awt.Dimension(555, 555));
         setResizable(false);
 
         titleAgendadeContatos.setFont(new java.awt.Font("Tahoma", 1, 26)); // NOI18N
@@ -77,6 +78,11 @@ public class Agenda extends javax.swing.JFrame {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         bntAtualizar.setText("Atualizar");
 
@@ -166,10 +172,19 @@ public class Agenda extends javax.swing.JFrame {
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
             DefaultTableModel dtmAgenda = (DefaultTableModel) tbLista.getModel();
-            Objetct[] dados = {TxtNome.getText(), TxtTelefone.getText();
+            Object[] dados = {TxtNome.getText(), TxtTelefone.getText()};
             dtmAgenda.addRow(dados);
-    }
+    
     }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+          if (tbLista.getSelectedRow() != -1) {
+              DefaultTableModel dtmAgenda = (DefaultTableModel) tbLista.getModel();
+              dtmAgenda.removeRow(tbLista.getSelectedRow());
+          }else{
+              JOptionPane.showMessageDialog(null, "Selecione uma linha");
+          }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
