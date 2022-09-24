@@ -68,6 +68,11 @@ public class Agenda extends javax.swing.JFrame {
                 "Nome:", "Telefone:"
             }
         ));
+        tbLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbListaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbLista);
 
         btnInserir.setText("Inserir");
@@ -85,6 +90,16 @@ public class Agenda extends javax.swing.JFrame {
         });
 
         bntAtualizar.setText("Atualizar");
+        bntAtualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bntAtualizarMouseClicked(evt);
+            }
+        });
+        bntAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAtualizarActionPerformed(evt);
+            }
+        });
 
         try {
             TxtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
@@ -185,6 +200,24 @@ public class Agenda extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(null, "Selecione uma linha");
           }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void tbListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListaMouseClicked
+          if (tbLista.getSelectedRow() != -1) {
+          TxtNome.setText( tbLista.getValueAt(tbLista.getSelectedRow(), 0).toString());
+          TxtTelefone.setText( tbLista.getValueAt(tbLista.getSelectedRow(), 1).toString());  
+        }
+    }//GEN-LAST:event_tbListaMouseClicked
+
+    private void bntAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAtualizarActionPerformed
+          if (tbLista.getSelectedRow() != -1) {
+          tbLista.setValueAt(TxtNome.getText(), tbLista.getSelectedRow(), 0);
+          tbLista.setValueAt(TxtTelefone.getText(), tbLista.getSelectedRow(), 1);
+          }
+    }//GEN-LAST:event_bntAtualizarActionPerformed
+
+    private void bntAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntAtualizarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bntAtualizarMouseClicked
 
     /**
      * @param args the command line arguments
